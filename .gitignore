@@ -68,3 +68,6 @@ submissions/
 
 # PyCharm
 .idea/
+
+# Pickled Objects
+*.pickle
