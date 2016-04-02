@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "formatters":
+    {
+      "simple":
+      {
+        "format": "format=%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+      },
+      "brief":
+      {
+        "format": "%(levelname)-8s: %(name)-15s: %(message)s"
+      },
+      "precise":
+      {
+        "format": "%(asctime)s %(name)-15s %(levelname)-8s %(message)s"
+      }
+    },
+    "handlers":
+    {
+      "console":
+      {
+        "class": "logging.StreamHandler",
+        "level": "DEBUG",
+        "formatter": "brief",
+        "stream": "ext://sys.stdout"
+      },
+      "file":
+      {
+        "class": "logging.handlers.RotatingFileHandler",
+        "formatter": "precise",
+        "filename": "execution_and_error.log",
+        "maxBytes": 1000000,
+        "backupCount": 3
+       }
+    },
+    "loggers":
+    {
+      "simpleExample":
+      {
+        "level": "DEBUG",
+        "handlers": ["console", "file"],
+        "propagate": "no"
+      }
+    },
+    "root":
+    {
+        "level": "DEBUG",
+        "handlers": ["console", "file"]
+    }
+}
+
