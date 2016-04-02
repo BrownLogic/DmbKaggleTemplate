@@ -3,49 +3,18 @@ import pandas as pd
 import logging.config
 import json
 from persistance.execution_context import PersistModel, FileObjectType
-import numpy as np
 from sklearn.pipeline import FeatureUnion, Pipeline
 from data_preparation.transformers import ColumnExtractor, LetterCountTransformer, NaNCountTransformer, \
     NanToZeroTransformer, MultiColumnLabelEncoder, LetterExtractionTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn import cross_validation
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
 
 the_settings = settings.Settings()
 """
 One goal I have is to create a 'record' of every attempt in the database
 It's kinda like logging, but I want to create a 'run_id' along with logs
 """
-
-def do_the_deal_SB():
-    model_persistor = PersistModel()
-
-    logging.info("Beginning {}".format(model_persistor.get_log_context()))
-    train_data =  pd.read_csv(the_settings.train_file_path)
-    X_train = np.nan_to_num(train_data[the_settings.numeric_features])
-    y_train = train_data[the_settings.target]
-    logging.info(X_train.shape)
-    logging.info(y_train.shape)
-    model = LogisticRegression(random_state=1)
-
-    scores = cross_validation.cross_val_score(model, X_train, y_train, cv=5, scoring='log_loss')
-    logging.info(("Accuracy: %0.2f (+/- %0.2f) [%s]" % (-scores.mean(), scores.std())))
-
-    """
-    train_data_features, test_data_features = extract_features(train_data, test_data)
-    # In this case, we included test_data_features so that we could encode
-    # as many features as we could know about
-
-    # Use train data for classifier.
-    X_train = train_data_features
-    y_train = train_data[the_settings.target]
-    model = get_model()
-    score = score_the_model(model, X_train, y_train)
-    save_the_model()
-    """
-    logging.info("Ending {}".format(model_persistor.get_log_context()))
-
 
 def do_the_deal():
     """
