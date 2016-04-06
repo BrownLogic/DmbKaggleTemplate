@@ -58,7 +58,7 @@ if __name__ == '__main__':
     logging.config.dictConfig(config)
     logger = logging.getLogger(__name__)
     try:
-        do_the_deal(117)
+        do_the_deal(139)
     except BaseException as e:
         logging.exception("Unexpected Error")
 
