@@ -76,7 +76,7 @@ def extract_features(train_data, test_data=None, model_persistor=None):
     this is to account for encoding where feature categories aren't in the train set
     :param train_data: Training data
     :param test_data:  Test data
-    :model_persistor: An instance of PersistModel.  When passed, supporting objects can be added
+    :param model_persistor: An instance of PersistModel.  When passed, supporting objects can be added
     """
     if test_data is not None:
         data_to_process = pd.concat([train_data[the_settings.all_features], test_data[the_settings.all_features]], ignore_index=True)
@@ -108,7 +108,9 @@ def extract_features(train_data, test_data=None, model_persistor=None):
     ])
 
     fitted_feature_model = feature_extraction.fit(data_to_process)
-    model_persistor.add_object_to_save(fitted_feature_model, FileObjectType.feature_model)
+    if model_persistor:
+        model_persistor.add_object_to_save(fitted_feature_model, FileObjectType.feature_model)
+
     extracted_features = fitted_feature_model.transform(data_to_process)
 
     return extracted_features[:len(train_data)], extracted_features[len(train_data):]
@@ -121,7 +123,7 @@ def get_model():
     return LogisticRegression(random_state=1)
 
 
-def score_the_model(model, X, y, model_persistor=None):
+def score_the_model(model, X, y, model_persistor):
     scoring_type = 'log_loss'
     scores = cross_validation.cross_val_score(model, X, y, cv=5, scoring=scoring_type)
     model_persistor.add_score(scoring_type, -scores.mean())
