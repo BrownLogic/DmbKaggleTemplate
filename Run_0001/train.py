@@ -21,7 +21,7 @@ def do_the_deal():
     Drives the whole process
     """
     # Stage
-    model_persistor = PersistModel(the_settings.saved_object_directory)
+    model_persistor = PersistModel(the_settings.saved_object_directory, project_name=the_settings.competiton_name)
     try:
         logging.info("Beginning {}".format(model_persistor.get_log_context()))
         train_data = get_train_data()
@@ -46,7 +46,7 @@ def do_the_deal():
         logging.info(score)
         logging.info("Ending {}".format(model_persistor.get_log_context()))
     except BaseException as e:
-        model_persistor.add_note("There was an error.  Check the logs for more details. {}", str(e))
+        model_persistor.add_note("There was an error.  Check the logs for more details. {}".format(str(e)))
         logging.exception("Unexpected Error")
     finally: # I may should pull this out of the handler.
         model_persistor.save_all()
