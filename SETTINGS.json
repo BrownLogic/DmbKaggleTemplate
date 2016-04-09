@@ -1,4 +1,5 @@
 {
+  "competition_name": "BNP Claims Competition",
   "logging_config_file": "logging.json",
   "test_file": "test.csv",
   "train_file": "train.csv",
