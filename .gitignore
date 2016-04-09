@@ -65,6 +65,7 @@ target/
 original_files/
 data/
 submissions/
+saved_objects/
 
 # PyCharm
 .idea/
