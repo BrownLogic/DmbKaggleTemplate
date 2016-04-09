@@ -14,7 +14,7 @@ def do_the_deal(run_id):
     Drives the whole process
     """
     #  Starts with a run_id.  Assumes that there is a model already saved.
-    model_persistor = PersistModel(the_settings.saved_object_directory, run_id = run_id)
+    model_persistor = PersistModel( the_settings.saved_object_directory, run_id = run_id, project_name=the_settings.competiton_name)
 
     logging.info("Beginning {}".format(model_persistor.get_log_context()))
 

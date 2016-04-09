@@ -1,5 +1,5 @@
 {
-  "competition_name": "BNP Claims Competition",
+  "competition_name": "DmbKaggleTemplate",
   "logging_config_file": "logging.json",
   "test_file": "test.csv",
   "train_file": "train.csv",

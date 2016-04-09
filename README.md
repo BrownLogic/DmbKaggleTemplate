@@ -43,3 +43,6 @@ Steps for use:
 15.  In Pycharm, select the new project.  Go to VCS-Commit Changes.  Select the appropriate files and directories and Commit-Push.
 
 
+# #
+Once you are setup, you can/should create a python notebook for snippets.  
+
